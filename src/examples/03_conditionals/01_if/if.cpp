@@ -1,5 +1,17 @@
-//write include statement for if header
+// if.cpp
+#include "if.h"
 
+bool get_and_result(bool a, bool b) {
+    return a && b;
+}
+
+bool get_or_result(bool a, bool b) {
+    return a || b;
+}
+
+bool get_not_result(bool a) {
+    return !a;
+}
 
 
 
