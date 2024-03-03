@@ -30,4 +30,5 @@ std::string get_dna_compliment(std::string dna) {
             case 'G': c = 'C'; break;
         }
     }
+    return dna;
 }
