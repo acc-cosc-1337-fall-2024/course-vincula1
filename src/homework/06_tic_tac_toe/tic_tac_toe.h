@@ -1,7 +1,9 @@
 //h
 
+#pragma once
 #include <string>
 #include <vector>
+#include <iostream>
 
 class TicTacToe {
 public:
@@ -11,6 +13,7 @@ public:
     bool game_over();
     void display_board() const;
     std::string get_player() const;
+    std::string get_winner() const;
 
     friend std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
     friend std::istream& operator>>(std::istream& is, TicTacToe& game);

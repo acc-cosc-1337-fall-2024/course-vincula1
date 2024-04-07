@@ -3,6 +3,7 @@
 #include "tic_tac_toe.h"
 #include <limits>
 #include <iostream>
+#include <algorithm>
 
 void TicTacToe::start_game(std::string first_player) {
     player = first_player;
@@ -39,6 +40,33 @@ void TicTacToe::set_next_player() {
     }
 }
 
+std::string TicTacToe::get_winner() const {
+    const std::vector<std::vector<int>> winning_combinations = {
+        {0, 1, 2},
+        {3, 4, 5},
+        {6, 7, 8},
+        {0, 3, 6},
+        {1, 4, 7},
+        {2, 5, 8},
+        {0, 4, 8},
+        {2, 4, 6},
+    };
+
+    for (const auto& combination : winning_combinations) {
+        if (pegs[combination[0]] != " " &&
+            pegs[combination[0]] == pegs[combination[1]] &&
+            pegs[combination[1]] == pegs[combination[2]]) {
+                return pegs[combination[0]];
+            }
+    }
+
+    if (std::none_of(pegs.begin(), pegs.end(), [](const std::string& peg) { return peg == " "; })) {
+        return "Tie";
+    }
+
+    return "No Winner";
+}
+
 bool TicTacToe::check_board_full() {
     for (auto& peg : pegs) {
         if (peg == " ") {
@@ -52,7 +80,7 @@ void TicTacToe::clear_board() {
     pegs = std::vector<std::string>(9," ");
 }
 
-std::ostream& operator>>(std::ostream& os, const TicTacToe& game) {
+std::ostream& operator<<(std::ostream& os, const TicTacToe& game) {
 
     game.display_board();
     return os;

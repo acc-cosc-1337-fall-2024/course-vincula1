@@ -16,4 +16,4 @@ private:
     int ties{0};
 
     void update_winner_count(const std::string& winner);
-}
+};
