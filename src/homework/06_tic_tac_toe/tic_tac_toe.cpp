@@ -18,8 +18,13 @@ void TicTacToe::mark_board(int position) {
 }
 
 bool TicTacToe::game_over() {
-    return check_board_full();
+    std::string result = get_winner();
+    if (result == "X" || result == "O" || result == "Tie") {
+        return true;
+    }
+    return false;
 }
+
 
 
 void TicTacToe::display_board() const {

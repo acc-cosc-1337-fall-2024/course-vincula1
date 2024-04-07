@@ -55,7 +55,7 @@ int main()
 
 			int x_wins, o_wins, ties;
 			manager.get_winner_total(x_wins, o_wins, ties);
-			std::cout << "Summary:\nX Wins: " << x_wins << "\nO Wins: " << o_wins << "\nTies: " << ties << std::end
+			std::cout << "Summary:\nX Wins: " << o_wins << "\nO Wins: " << x_wins << "\nTies: " << ties << std::endl;
 
 			break;
 		}
