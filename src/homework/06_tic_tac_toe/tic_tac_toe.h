@@ -12,6 +12,9 @@ public:
     void display_board() const;
     std::string get_player() const;
 
+    friend std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
+    friend std::istream& operator>>(std::istream& is, TicTacToe& game);
+
 private:
 
     void set_next_player();

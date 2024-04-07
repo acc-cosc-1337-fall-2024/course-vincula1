@@ -1,6 +1,7 @@
 //cpp
 
 #include "tic_tac_toe.h"
+#include <limits>
 #include <iostream>
 
 void TicTacToe::start_game(std::string first_player) {
@@ -49,4 +50,25 @@ bool TicTacToe::check_board_full() {
 
 void TicTacToe::clear_board() {
     pegs = std::vector<std::string>(9," ");
+}
+
+std::ostream& operator>>(std::ostream& os, const TicTacToe& game) {
+
+    game.display_board();
+    return os;
+
+}
+
+std::istream& operator>>(std::istream& is, TicTacToe& game) {
+    std::cout << "Player " << game.get_player() << "'s turn. Enter a position 1-9 : ";
+    int position;
+    is >> position;
+    if (!is) {
+        is.clear();
+        is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid Input. \n";
+    } else {
+        game.mark_board(position);
+    }
+    return is;
 }
