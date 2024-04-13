@@ -61,14 +61,17 @@ std::string TicTacToe::get_winner() const {
         if (pegs[combination[0]] != " " &&
             pegs[combination[0]] == pegs[combination[1]] &&
             pegs[combination[1]] == pegs[combination[2]]) {
-                return pegs[combination[0]];
-            }
+            std::cout << "Winner found: " << pegs[combination[0]] << std::endl;
+            return pegs[combination[0]];
+        }
     }
 
     if (std::none_of(pegs.begin(), pegs.end(), [](const std::string& peg) { return peg == " "; })) {
+        std::cout << "Game is a tie, no empty spaces left." << std::endl;
         return "Tie";
     }
 
+    std::cout << "No winner yet, game continues." << std::endl;
     return "No Winner";
 }
 

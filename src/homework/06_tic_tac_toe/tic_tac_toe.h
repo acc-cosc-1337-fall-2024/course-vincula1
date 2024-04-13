@@ -1,4 +1,4 @@
-//h
+//tic_tac_toe.h
 
 #pragma once
 #include <string>

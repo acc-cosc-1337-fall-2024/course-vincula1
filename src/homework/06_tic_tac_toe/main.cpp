@@ -42,7 +42,9 @@ int main()
 			std::cout << "Game Over. Its a tie.\n";
 		}
 
+		//std::cout << "About to save game with winner: " << game.get_winner() << std::endl;
 		manager.save_game(game);
+		//std::cout << "Game has been saved." << std::endl;
 
 		std::cout << "Play again? (Y/N): ";
 		char play_again;
@@ -56,7 +58,7 @@ int main()
 			int x_wins, o_wins, ties;
 			manager.get_winner_total(x_wins, o_wins, ties);
 			std::cout << "Summary:\nX Wins: " << x_wins << "\nO Wins: " << o_wins << "\nTies: " << ties << std::endl;
-
+			
 			break;
 		}
 
