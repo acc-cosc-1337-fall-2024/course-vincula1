@@ -76,7 +76,29 @@ std::string TicTacToe::get_winner() const {
     return "No Winner";
 }
 
+std::ostream& operator<<(std::ostream& os, const TicTacToe& game) {
+    for (int i = 0; i < 9; i += 3) {
+        os << game.get_pegs()[i] << "|" << game.get_pegs()[i+1] << "|" << game.get_pegs()[i+2] << "\n";
+    }
+    return os;
+}
 
+std::istream& operator>>(std::istream& is, TicTacToe& game) {
+    int position;
+    std::cout << "Player " << game.get_player() << ", enter a position (1-9): ";
+    is >> position;
+    if (!is) {
+        is.clear();
+        is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input, please enter a number between 1 and 9." << std::endl;
+    } else if (position >= 1 && position <= 9) {
+        game.mark_board(position);
+    } else {
+        std::cout << "Invalid position. " << std::endl;
+        is.clear(std::ios_base::failbit);
+    }
+    return is;
+}
 
 bool TicTacToe::check_board_full() {
     for (auto& peg : pegs) {
@@ -89,25 +111,4 @@ bool TicTacToe::check_board_full() {
 
 void TicTacToe::clear_board() {
     pegs = std::vector<std::string>(9," ");
-}
-
-std::ostream& operator<<(std::ostream& os, const TicTacToe& game) {
-
-    game.display_board();
-    return os;
-
-}
-
-std::istream& operator>>(std::istream& is, TicTacToe& game) {
-    std::cout << "Player " << game.get_player() << "'s turn. Enter a position 1-9 : ";
-    int position;
-    is >> position;
-    if (!is) {
-        is.clear();
-        is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid Input. \n";
-    } else {
-        game.mark_board(position);
-    }
-    return is;
 }

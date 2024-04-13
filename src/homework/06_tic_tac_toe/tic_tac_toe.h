@@ -16,8 +16,10 @@ public:
     std::string get_winner() const;
     void reset_game();
 
-    friend std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
-    friend std::istream& operator>>(std::istream& is, TicTacToe& game);
+
+    const std::vector<std::string>& get_pegs() const { return pegs; }
+    //friend std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
+    //friend std::istream& operator>>(std::istream& is, TicTacToe& game);
 
 private:
 
@@ -28,3 +30,6 @@ private:
     std::string player;
     std::vector<std::string> pegs = std::vector<std::string>(9, " ");
 };
+
+std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
+std::istream& operator>>(std::istream& is, TicTacToe& game);
