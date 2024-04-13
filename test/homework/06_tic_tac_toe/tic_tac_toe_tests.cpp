@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -137,4 +138,47 @@ TEST_CASE("Test win diagonally from bottom left", "[TicTacToe]") {
     game.mark_board(2);
     game.mark_board(3);
     REQUIRE(game.game_over() == true);
+}
+
+TEST_CASE("Test TicTacToeManager tracking", "[TicTacToeManager]") {
+    TicTacToeManager manager;
+    TicTacToe game;
+    int x_wins, o_wins, ties;
+
+    // Simulate a game with X as the winner
+    game.start_game("X");
+    game.mark_board(1); // X
+    game.mark_board(4); // O
+    game.mark_board(2); // X
+    game.mark_board(5); // O
+    game.mark_board(3); // X wins
+    manager.save_game(game);
+
+    // Simulate a game with O as the winner
+    game.start_game("O");
+    game.mark_board(4); // O
+    game.mark_board(1); // X
+    game.mark_board(5); // O
+    game.mark_board(2); // X
+    game.mark_board(6); // O wins
+    manager.save_game(game);
+
+    // Simulate a tied game
+    game.start_game("X");
+    game.mark_board(1); // X
+    game.mark_board(2); // O
+    game.mark_board(3); // X
+    game.mark_board(5); // O
+    game.mark_board(6); // X
+    game.mark_board(4); // O
+    game.mark_board(8); // X
+    game.mark_board(7); // O
+    game.mark_board(9); // Tie
+    manager.save_game(game);
+
+    manager.get_winner_total(o_wins, x_wins, ties);
+
+    REQUIRE(x_wins == 1);
+    REQUIRE(o_wins == 1);
+    REQUIRE(ties == 1);
 }

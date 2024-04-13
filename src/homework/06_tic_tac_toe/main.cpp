@@ -37,7 +37,7 @@ int main()
 		
 		std::string winner = game.get_winner();
 		if (winner == "X" || winner == "O") {
-			std::cout << "Gmae Over. Winner is: " << winner << "\n";
+			std::cout << "Game Over. Winner is: " << winner << "\n";
 		} else {
 			std::cout << "Game Over. Its a tie.\n";
 		}
@@ -55,7 +55,7 @@ int main()
 
 			int x_wins, o_wins, ties;
 			manager.get_winner_total(x_wins, o_wins, ties);
-			std::cout << "Summary:\nX Wins: " << o_wins << "\nO Wins: " << x_wins << "\nTies: " << ties << std::endl;
+			std::cout << "Summary:\nX Wins: " << x_wins << "\nO Wins: " << o_wins << "\nTies: " << ties << std::endl;
 
 			break;
 		}
