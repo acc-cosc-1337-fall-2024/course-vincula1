@@ -17,6 +17,11 @@ void TicTacToe::mark_board(int position) {
     }
 }
 
+void TicTacToe::reset_game() {
+    pegs = std::vector<std::string>(9, " ");
+    player = "";
+}
+
 bool TicTacToe::game_over() {
     std::string result = get_winner();
     if (result == "X" || result == "O" || result == "Tie") {
@@ -47,21 +52,30 @@ void TicTacToe::set_next_player() {
 
 std::string TicTacToe::get_winner() const {
     const std::vector<std::vector<int>> winning_combinations = {
-        {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6},
+        {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+        {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+        {0, 4, 8}, {2, 4, 6}
     };
 
+    // Check each winning combination
     for (const auto& combination : winning_combinations) {
-        if (pegs[combination[0]] != " " && pegs[combination[0]] == pegs[combination[1]] && pegs[combination[1]] == pegs[combination[2]]) {
+        if (pegs[combination[0]] != " " &&
+            pegs[combination[0]] == pegs[combination[1]] &&
+            pegs[combination[1]] == pegs[combination[2]]) {
+            std::cout << "Winner found: " << pegs[combination[0]] << std::endl;
             return pegs[combination[0]];
         }
     }
 
     if (std::none_of(pegs.begin(), pegs.end(), [](const std::string& peg) { return peg == " "; })) {
+        std::cout << "Game is a tie, no empty spaces left." << std::endl;
         return "Tie";
     }
 
+    std::cout << "No winner yet, game continues." << std::endl;
     return "No Winner";
 }
+
 
 
 bool TicTacToe::check_board_full() {

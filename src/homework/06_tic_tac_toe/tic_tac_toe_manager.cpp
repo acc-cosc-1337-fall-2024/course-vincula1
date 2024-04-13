@@ -24,8 +24,11 @@ std::ostream& operator<<(std::ostream& out, const TicTacToeManager& manager) {
 }
 
 void TicTacToeManager::update_winner_count(const std::string& winner) {
-    std::cout << "Updating count for winner: " << winner << std::endl;
-    if (winner == "X") x_win++;
-    else if (winner == "O") o_win++;
-    else if (winner == "Tie") ties++;
+    if (winner == "X") {
+        x_win++;
+    } else if (winner == "O") {
+        o_win++;
+    } else if (winner == "Tie") {
+        ties++;
+    }
 }

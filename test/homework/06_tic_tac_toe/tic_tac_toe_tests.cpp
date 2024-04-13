@@ -145,35 +145,35 @@ TEST_CASE("Test TicTacToeManager tracking", "[TicTacToeManager]") {
     TicTacToe game;
     int x_wins, o_wins, ties;
 
-    // Simulate a game with X as the winner
+    game.reset_game();
     game.start_game("X");
-    game.mark_board(1); // X
-    game.mark_board(4); // O
-    game.mark_board(2); // X
-    game.mark_board(5); // O
-    game.mark_board(3); // X wins
+    game.mark_board(1);
+    game.mark_board(4);
+    game.mark_board(2);
+    game.mark_board(5);
+    game.mark_board(3);
     manager.save_game(game);
 
-    // Simulate a game with O as the winner
+    game.reset_game();
     game.start_game("O");
-    game.mark_board(4); // O
-    game.mark_board(1); // X
-    game.mark_board(5); // O
-    game.mark_board(2); // X
-    game.mark_board(6); // O wins
+    game.mark_board(4);
+    game.mark_board(1);
+    game.mark_board(5);
+    game.mark_board(2);
+    game.mark_board(6);
     manager.save_game(game);
 
-    // Simulate a tied game
+    game.reset_game();
     game.start_game("X");
-    game.mark_board(1); // X
-    game.mark_board(2); // O
-    game.mark_board(3); // X
-    game.mark_board(5); // O
-    game.mark_board(6); // X
-    game.mark_board(4); // O
-    game.mark_board(8); // X
-    game.mark_board(7); // O
-    game.mark_board(9); // Tie
+    game.mark_board(1);
+    game.mark_board(2);
+    game.mark_board(3);
+    game.mark_board(5);
+    game.mark_board(6);
+    game.mark_board(7);
+    game.mark_board(4);
+    game.mark_board(9);
+    game.mark_board(8);
     manager.save_game(game);
 
     manager.get_winner_total(o_wins, x_wins, ties);
