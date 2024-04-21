@@ -14,10 +14,8 @@ false
 */
 
 bool TicTacToe4::check_column_win() const {
-    std::cout << "Checking columns for win...\n";
     for (int i = 0; i < 4; ++i) { // Check each column
         if (pegs[i] != " " && pegs[i] == pegs[i + 4] && pegs[i + 4] == pegs[i + 8] && pegs[i + 8] == pegs[i + 12]) {
-            std::cout << "Column win detected in column starting at index " << i << "\n";
             return true;
         }
     }
@@ -25,10 +23,8 @@ bool TicTacToe4::check_column_win() const {
 }
 
 bool TicTacToe4::check_row_win() const {
-    std::cout << "Checking rows for win...\n";
     for (int i = 0; i < 16; i += 4) {
         if (pegs[i] != " " && pegs[i] == pegs[i + 1] && pegs[i + 1] == pegs[i + 2] && pegs[i + 2] == pegs[i + 3]) {
-            std::cout << "Row win detected in row starting at index " << i << "\n";
             return true;
         }
     }

@@ -29,7 +29,6 @@ void TicTacToe::reset_game() {
 }
 
 bool TicTacToe::game_over() const {
-    std::cout << "Checking game over conditions.\n";
     if (check_row_win() || check_column_win() || check_diagonal_win()) {
         return true;
     }
@@ -86,8 +85,6 @@ std::string TicTacToe::get_winner() const {
         std::cout << "Game is a tie, no empty spaces left." << std::endl;
         return "Tie";
     }
-
-    std::cout << "No winner yet, game continues." << std::endl;
     return "No Winner";
 }
 

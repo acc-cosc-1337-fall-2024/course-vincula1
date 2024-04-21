@@ -10,7 +10,6 @@ public:
 
     explicit TicTacToe(int size);
     virtual ~TicTacToe() {
-        std::cout << "Destroying TicTacToe base class\n";
     }
 
     void start_game(std::string first_player);
