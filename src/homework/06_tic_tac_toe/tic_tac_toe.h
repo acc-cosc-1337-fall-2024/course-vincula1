@@ -9,7 +9,9 @@ class TicTacToe {
 public:
 
     explicit TicTacToe(int size);
-    virtual ~TicTacToe() = default;
+    virtual ~TicTacToe() {
+        std::cout << "Destroying TicTacToe base class\n";
+    }
 
     void start_game(std::string first_player);
     void mark_board(int position);
@@ -18,27 +20,27 @@ public:
     std::string get_player() const;
     std::string get_winner() const;
     void reset_game();
+    bool check_board_full() const;
 
-
-    const std::vector<std::string>& get_pegs() const { return pegs; }
+    const std::vector<std::string>& get_pegs() const {
+        return pegs;
+    }
     //friend std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
     //friend std::istream& operator>>(std::istream& is, TicTacToe& game);
 
 protected:
-    virtual bool check_column_win() { return false; }
-    virtual bool check_row_win() { return false; }
-    virtual bool check_diagonal_win() { return false; }
-
+    virtual bool check_column_win() const { return false; }
+    virtual bool check_row_win() const { return false; }
+    virtual bool check_diagonal_win() const { return false; }
+    
+    std::vector<std::string> pegs;
 
 private:
 
     void set_next_player();
-    bool check_board_full();
     void clear_board();
 
     std::string player;
-    std::vector<std::string> pegs;
 };
 
 std::ostream& operator<<(std::ostream& os, const TicTacToe& game);
-std::istream& operator>>(std::istream& is, TicTacToe& game);
