@@ -1,5 +1,6 @@
 //cpp
 
+#include <cmath>
 #include "tic_tac_toe.h"
 #include <limits>
 #include <iostream>
@@ -11,7 +12,7 @@ void TicTacToe::start_game(std::string first_player) {
 }
 
 void TicTacToe::mark_board(int position) {
-    if(position >= 1 && position <= 9 && pegs[position - 1] == " ") {
+    if (position >= 1 && position <= pegs.size() && pegs[position - 1] == " ") {
         pegs[position - 1] = player;
         set_next_player();
     }
@@ -30,11 +31,16 @@ bool TicTacToe::game_over() {
     return false;
 }
 
-
-
 void TicTacToe::display_board() const {
-    for (int i = 0; i < 9; i += 3) {
-        std::cout << pegs[i] << "|" << pegs[i + 1] << "|" << pegs[i + 2] << "\n";
+    int board_size = static_cast<int>(std::sqrt(pegs.size()));
+    for (int i = 0; i < pegs.size(); i += board_size) {
+        for (int j = 0; j < board_size; j++) {
+            std::cout << pegs[i + j];
+            if (j < board_size - 1) std::cout << "|";
+        }
+        std::cout << "\n";
+        if (i < pegs.size() - board_size)
+            std::cout << std::string(board_size * 2 - 1, '-') << "\n";
     }
 }
 
