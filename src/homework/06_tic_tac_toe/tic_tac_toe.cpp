@@ -28,17 +28,14 @@ void TicTacToe::reset_game() {
     player = "";
 }
 
-bool TicTacToe::game_over() {
+bool TicTacToe::game_over() const {
     std::cout << "Checking game over conditions.\n";
     if (check_row_win() || check_column_win() || check_diagonal_win()) {
-        std::cout << "Game Over: A win condition was met.\n";
         return true;
     }
     if (check_board_full() && !check_row_win() && !check_column_win() && !check_diagonal_win()) {
-        std::cout << "Game Over: Board is reported as full, but no win condition was met. It's a tie.\n";
         return true;
     }
-    std::cout << "Game continues: No win conditions met and board not full.\n";
     return false;
 }
 

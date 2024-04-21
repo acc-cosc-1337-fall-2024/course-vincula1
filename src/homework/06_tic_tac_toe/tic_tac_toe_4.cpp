@@ -1,4 +1,5 @@
 #include "tic_tac_toe_4.h"
+#include <cmath>
 #pragma once
 
 /*
@@ -35,22 +36,24 @@ bool TicTacToe4::check_row_win() const {
 }
 
 bool TicTacToe4::check_diagonal_win() const {
-    std::cout << "Checking diagonals for win...\n";
-
-    // Check main diagonal (top-left to bottom-right)
-    std::cout << "Main diagonal values: " << pegs[0] << ", " << pegs[5] << ", " << pegs[10] << ", " << pegs[15] << "\n";
-    if (pegs[0] != " " && pegs[0] == pegs[5] && pegs[5] == pegs[10] && pegs[10] == pegs[15]) {
-        std::cout << "Main diagonal win detected\n";
-        return true;
+    int size = static_cast<int>(std::sqrt(pegs.size()));
+    // Check main diagonal
+    bool main_diagonal_win = true;
+    for (int i = 0; i < size; ++i) {
+        if (pegs[i * size + i] == " " || pegs[i * size + i] != pegs[0]) {
+            main_diagonal_win = false;
+            break;
+        }
     }
+    if (main_diagonal_win) return true;
 
-    // Check secondary diagonal (top-right to bottom-left)
-    std::cout << "Secondary diagonal values: " << pegs[3] << ", " << pegs[6] << ", " << pegs[9] << ", " << pegs[12] << "\n";
-    if (pegs[3] != " " && pegs[3] == pegs[6] && pegs[6] == pegs[9] && pegs[9] == pegs[12]) {
-        std::cout << "Secondary diagonal win detected\n";
-        return true;
+    // Check secondary diagonal
+    bool secondary_diagonal_win = true;
+    for (int i = 0; i < size; ++i) {
+        if (pegs[(size - 1) * (i + 1)] == " " || pegs[(size - 1) * (i + 1)] != pegs[size - 1]) {
+            secondary_diagonal_win = false;
+            break;
+        }
     }
-
-    std::cout << "No diagonal win detected.\n";
-    return false;
+    return secondary_diagonal_win;
 }

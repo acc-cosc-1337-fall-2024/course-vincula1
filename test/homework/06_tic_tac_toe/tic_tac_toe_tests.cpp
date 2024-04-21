@@ -398,3 +398,41 @@ TEST_CASE("Test win at fourth column", "[TicTacToe]") {
     game.mark_board(16);
     REQUIRE(game.get_winner() == "X");
 }
+
+TEST_CASE("Test win column left to right 4x4", "[TicTacToe]") {
+    TicTacToe game(4);
+    game.start_game("X");
+    game.mark_board(1);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(5);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(6);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(1);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(11);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(2);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(16);
+    REQUIRE(game.game_over() == true);
+}
+
+TEST_CASE("Test win column right to left 4x4", "[TicTacToe]") {
+    TicTacToe game(4);
+    game.start_game("X");
+    game.mark_board(4);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(5);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(7);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(1);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(10);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(2);
+    REQUIRE(game.game_over() == false);
+    game.mark_board(12);
+    REQUIRE(game.game_over() == true);
+}
